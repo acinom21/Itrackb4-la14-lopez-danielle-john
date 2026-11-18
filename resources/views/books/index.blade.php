@@ -6,7 +6,9 @@
 
     <h2 class="mb-3">List of Recommendations</h2>
 
-    <a href="{{ route('books.create') }}" class="btn btn-success mb-3">+ Add Book</a>
+    @auth
+        <a href="{{ route('books.create') }}" class="btn btn-success mb-3">+ Add Book</a>
+    @endauth
 
     <form method="GET" action="{{ route('books.index') }}" class="row g-2 mb-3">
         <div class="col-md-3">
@@ -80,15 +82,20 @@
                     </td>
                     <td>
                         <div class="d-flex gap-1">
+                            {{-- Bukas sa lahat --}}
                             <a href="{{ route('books.show', $book) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                            <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-outline-primary">Edit</a>
 
-                            <form action="{{ route('books.destroy', $book) }}" method="POST"
-                                  onsubmit="return confirm('Delete this book?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                            </form>
+                            {{-- Para lang sa naka-sign in --}}
+                            @auth
+                                <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+
+                                <form action="{{ route('books.destroy', $book) }}" method="POST"
+                                      onsubmit="return confirm('Delete this book?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            @endauth
                         </div>
                     </td>
                 </tr>

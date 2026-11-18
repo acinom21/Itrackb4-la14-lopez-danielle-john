@@ -14,15 +14,14 @@
         <p class="text-muted mb-3">Prepared by: Danielle John T. Lopez</p>
 
         @include('partials._nav')
-       @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-@if (session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
+
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         @yield('content')
 
     </div>
